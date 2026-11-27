@@ -39,6 +39,7 @@ type MediaManagementConfigResource struct {
 	ScriptImportPath NullableString `json:"scriptImportPath,omitempty"`
 	ImportExtraFiles *bool `json:"importExtraFiles,omitempty"`
 	ExtraFileExtensions NullableString `json:"extraFileExtensions,omitempty"`
+	UserRejectedExtensions NullableString `json:"userRejectedExtensions,omitempty"`
 	EnableMediaInfo *bool `json:"enableMediaInfo,omitempty"`
 }
 
@@ -781,6 +782,48 @@ func (o *MediaManagementConfigResource) SetEnableMediaInfo(v bool) {
 	o.EnableMediaInfo = &v
 }
 
+// GetUserRejectedExtensions returns the UserRejectedExtensions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MediaManagementConfigResource) GetUserRejectedExtensions() string {
+	if o == nil || IsNil(o.UserRejectedExtensions.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.UserRejectedExtensions.Get()
+}
+
+// GetUserRejectedExtensionsOk returns a tuple with the UserRejectedExtensions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MediaManagementConfigResource) GetUserRejectedExtensionsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UserRejectedExtensions.Get(), o.UserRejectedExtensions.IsSet()
+}
+
+// HasUserRejectedExtensions returns a boolean if a field has been set.
+func (o *MediaManagementConfigResource) HasUserRejectedExtensions() bool {
+	if o != nil && o.UserRejectedExtensions.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUserRejectedExtensions gets a reference to the given NullableString and assigns it to the UserRejectedExtensions field.
+func (o *MediaManagementConfigResource) SetUserRejectedExtensions(v string) {
+	o.UserRejectedExtensions.Set(&v)
+}
+// SetUserRejectedExtensionsNil sets the value for UserRejectedExtensions to be an explicit nil
+func (o *MediaManagementConfigResource) SetUserRejectedExtensionsNil() {
+	o.UserRejectedExtensions.Set(nil)
+}
+
+// UnsetUserRejectedExtensions ensures that no value is present for UserRejectedExtensions, not even an explicit nil
+func (o *MediaManagementConfigResource) UnsetUserRejectedExtensions() {
+	o.UserRejectedExtensions.Unset()
+}
+
 func (o MediaManagementConfigResource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -850,6 +893,9 @@ func (o MediaManagementConfigResource) ToMap() (map[string]interface{}, error) {
 	}
 	if o.ExtraFileExtensions.IsSet() {
 		toSerialize["extraFileExtensions"] = o.ExtraFileExtensions.Get()
+	}
+	if o.UserRejectedExtensions.IsSet() {
+		toSerialize["userRejectedExtensions"] = o.UserRejectedExtensions.Get()
 	}
 	if !IsNil(o.EnableMediaInfo) {
 		toSerialize["enableMediaInfo"] = o.EnableMediaInfo

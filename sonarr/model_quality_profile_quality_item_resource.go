@@ -24,6 +24,9 @@ type QualityProfileQualityItemResource struct {
 	Quality *Quality `json:"quality,omitempty"`
 	Items []QualityProfileQualityItemResource `json:"items,omitempty"`
 	Allowed *bool `json:"allowed,omitempty"`
+	MinSize NullableFloat64 `json:"minSize,omitempty"`
+	MaxSize NullableFloat64 `json:"maxSize,omitempty"`
+	PreferredSize NullableFloat64 `json:"preferredSize,omitempty"`
 }
 
 // NewQualityProfileQualityItemResource instantiates a new QualityProfileQualityItemResource object
@@ -214,6 +217,132 @@ func (o *QualityProfileQualityItemResource) SetAllowed(v bool) {
 	o.Allowed = &v
 }
 
+// GetMinSize returns the MinSize field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QualityProfileQualityItemResource) GetMinSize() float64 {
+	if o == nil || IsNil(o.MinSize.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.MinSize.Get()
+}
+
+// GetMinSizeOk returns a tuple with the MinSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QualityProfileQualityItemResource) GetMinSizeOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MinSize.Get(), o.MinSize.IsSet()
+}
+
+// HasMinSize returns a boolean if a field has been set.
+func (o *QualityProfileQualityItemResource) HasMinSize() bool {
+	if o != nil && o.MinSize.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMinSize gets a reference to the given NullableFloat64 and assigns it to the MinSize field.
+func (o *QualityProfileQualityItemResource) SetMinSize(v float64) {
+	o.MinSize.Set(&v)
+}
+// SetMinSizeNil sets the value for MinSize to be an explicit nil
+func (o *QualityProfileQualityItemResource) SetMinSizeNil() {
+	o.MinSize.Set(nil)
+}
+
+// UnsetMinSize ensures that no value is present for MinSize, not even an explicit nil
+func (o *QualityProfileQualityItemResource) UnsetMinSize() {
+	o.MinSize.Unset()
+}
+
+// GetMaxSize returns the MaxSize field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QualityProfileQualityItemResource) GetMaxSize() float64 {
+	if o == nil || IsNil(o.MaxSize.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.MaxSize.Get()
+}
+
+// GetMaxSizeOk returns a tuple with the MaxSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QualityProfileQualityItemResource) GetMaxSizeOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxSize.Get(), o.MaxSize.IsSet()
+}
+
+// HasMaxSize returns a boolean if a field has been set.
+func (o *QualityProfileQualityItemResource) HasMaxSize() bool {
+	if o != nil && o.MaxSize.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxSize gets a reference to the given NullableFloat64 and assigns it to the MaxSize field.
+func (o *QualityProfileQualityItemResource) SetMaxSize(v float64) {
+	o.MaxSize.Set(&v)
+}
+// SetMaxSizeNil sets the value for MaxSize to be an explicit nil
+func (o *QualityProfileQualityItemResource) SetMaxSizeNil() {
+	o.MaxSize.Set(nil)
+}
+
+// UnsetMaxSize ensures that no value is present for MaxSize, not even an explicit nil
+func (o *QualityProfileQualityItemResource) UnsetMaxSize() {
+	o.MaxSize.Unset()
+}
+
+// GetPreferredSize returns the PreferredSize field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *QualityProfileQualityItemResource) GetPreferredSize() float64 {
+	if o == nil || IsNil(o.PreferredSize.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.PreferredSize.Get()
+}
+
+// GetPreferredSizeOk returns a tuple with the PreferredSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *QualityProfileQualityItemResource) GetPreferredSizeOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PreferredSize.Get(), o.PreferredSize.IsSet()
+}
+
+// HasPreferredSize returns a boolean if a field has been set.
+func (o *QualityProfileQualityItemResource) HasPreferredSize() bool {
+	if o != nil && o.PreferredSize.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPreferredSize gets a reference to the given NullableFloat64 and assigns it to the PreferredSize field.
+func (o *QualityProfileQualityItemResource) SetPreferredSize(v float64) {
+	o.PreferredSize.Set(&v)
+}
+// SetPreferredSizeNil sets the value for PreferredSize to be an explicit nil
+func (o *QualityProfileQualityItemResource) SetPreferredSizeNil() {
+	o.PreferredSize.Set(nil)
+}
+
+// UnsetPreferredSize ensures that no value is present for PreferredSize, not even an explicit nil
+func (o *QualityProfileQualityItemResource) UnsetPreferredSize() {
+	o.PreferredSize.Unset()
+}
+
 func (o QualityProfileQualityItemResource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -238,6 +367,15 @@ func (o QualityProfileQualityItemResource) ToMap() (map[string]interface{}, erro
 	}
 	if !IsNil(o.Allowed) {
 		toSerialize["allowed"] = o.Allowed
+	}
+	if o.MinSize.IsSet() {
+		toSerialize["minSize"] = o.MinSize.Get()
+	}
+	if o.MaxSize.IsSet() {
+		toSerialize["maxSize"] = o.MaxSize.Get()
+	}
+	if o.PreferredSize.IsSet() {
+		toSerialize["preferredSize"] = o.PreferredSize.Get()
 	}
 	return toSerialize, nil
 }
