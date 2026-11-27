@@ -40,6 +40,8 @@ type ImportListResource struct {
 	ListType *ImportListType `json:"listType,omitempty"`
 	ListOrder *int32 `json:"listOrder,omitempty"`
 	MinRefreshInterval *string `json:"minRefreshInterval,omitempty"`
+	Language *Language `json:"language,omitempty"`
+	TagExisting *TagExistingType `json:"tagExisting,omitempty"`
 }
 
 // NewImportListResource instantiates a new ImportListResource object
@@ -794,6 +796,70 @@ func (o *ImportListResource) SetMinRefreshInterval(v string) {
 	o.MinRefreshInterval = &v
 }
 
+// GetLanguage returns the Language field value if set, zero value otherwise.
+func (o *ImportListResource) GetLanguage() Language {
+	if o == nil || IsNil(o.Language) {
+		var ret Language
+		return ret
+	}
+	return *o.Language
+}
+
+// GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ImportListResource) GetLanguageOk() (*Language, bool) {
+	if o == nil || IsNil(o.Language) {
+		return nil, false
+	}
+	return o.Language, true
+}
+
+// HasLanguage returns a boolean if a field has been set.
+func (o *ImportListResource) HasLanguage() bool {
+	if o != nil && !IsNil(o.Language) {
+		return true
+	}
+
+	return false
+}
+
+// SetLanguage gets a reference to the given Language and assigns it to the Language field.
+func (o *ImportListResource) SetLanguage(v Language) {
+	o.Language = &v
+}
+
+// GetTagExisting returns the TagExisting field value if set, zero value otherwise.
+func (o *ImportListResource) GetTagExisting() TagExistingType {
+	if o == nil || IsNil(o.TagExisting) {
+		var ret TagExistingType
+		return ret
+	}
+	return *o.TagExisting
+}
+
+// GetTagExistingOk returns a tuple with the TagExisting field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ImportListResource) GetTagExistingOk() (*TagExistingType, bool) {
+	if o == nil || IsNil(o.TagExisting) {
+		return nil, false
+	}
+	return o.TagExisting, true
+}
+
+// HasTagExisting returns a boolean if a field has been set.
+func (o *ImportListResource) HasTagExisting() bool {
+	if o != nil && !IsNil(o.TagExisting) {
+		return true
+	}
+
+	return false
+}
+
+// SetTagExisting gets a reference to the given TagExistingType and assigns it to the TagExisting field.
+func (o *ImportListResource) SetTagExisting(v TagExistingType) {
+	o.TagExisting = &v
+}
+
 func (o ImportListResource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -866,6 +932,12 @@ func (o ImportListResource) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.MinRefreshInterval) {
 		toSerialize["minRefreshInterval"] = o.MinRefreshInterval
+	}
+	if !IsNil(o.Language) {
+		toSerialize["language"] = o.Language
+	}
+	if !IsNil(o.TagExisting) {
+		toSerialize["tagExisting"] = o.TagExisting
 	}
 	return toSerialize, nil
 }

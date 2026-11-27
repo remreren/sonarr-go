@@ -26,6 +26,7 @@ const (
 	IMPORTLISTTYPE_SIMKL ImportListType = "simkl"
 	IMPORTLISTTYPE_OTHER ImportListType = "other"
 	IMPORTLISTTYPE_ADVANCED ImportListType = "advanced"
+	IMPORTLISTTYPE_TMDB ImportListType = "tmdb"
 )
 
 // All allowed values of ImportListType enum
@@ -36,6 +37,7 @@ var AllowedImportListTypeEnumValues = []ImportListType{
 	"simkl",
 	"other",
 	"advanced",
+	"tmdb",
 }
 
 func (v *ImportListType) UnmarshalJSON(src []byte) error {

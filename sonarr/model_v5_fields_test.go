@@ -91,3 +91,136 @@ func TestQualityProfileItemSizesNullAndAbsent(t *testing.T) {
 		t.Fatalf("unset sizes must not be sent: %s", out)
 	}
 }
+
+// roundTrip marshals v, checks every want substring, and unmarshals it into back.
+func roundTrip(t *testing.T, v interface{}, back interface{}, want ...string) {
+	t.Helper()
+
+	out, err := json.Marshal(v)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, w := range want {
+		if !strings.Contains(string(out), w) {
+			t.Fatalf("%s not serialized: %s", w, out)
+		}
+	}
+	if err := json.Unmarshal(out, back); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestHostConfigOidcFieldsRoundTrip(t *testing.T) {
+	in := NewHostConfigResource()
+	in.SetOidcAuthority("https://id.example")
+	in.SetOidcClientId("sonarr")
+	in.SetOidcClientSecret("s3cret")
+	in.SetOidcScopes("openid profile email")
+	in.SetOidcUserIdentifier("")
+	in.SetSslKeyPath("")
+	in.SetAuthenticationMethod(AUTHENTICATIONTYPE_OIDC)
+	in.SetAuthenticationRequired(AUTHENTICATIONREQUIREDTYPE_DISABLED_FOR_LOCALHOST)
+
+	var back HostConfigResource
+	roundTrip(t, in, &back, `"oidcAuthority":"https://id.example"`, `"oidcUserIdentifier":""`, `"sslKeyPath":""`,
+		`"authenticationMethod":"oidc"`, `"authenticationRequired":"disabledForLocalhost"`)
+	if back.GetOidcClientSecret() != "s3cret" || !back.HasSslKeyPath() || back.GetAuthenticationMethod() != AUTHENTICATIONTYPE_OIDC {
+		t.Fatalf("not read back: %+v", back)
+	}
+}
+
+func TestMediaManagementSeasonPackFieldsRoundTrip(t *testing.T) {
+	in := NewMediaManagementConfigResource()
+	in.SetSeasonPackUpgrade(SEASONPACKUPGRADETYPE_THRESHOLD)
+	in.SetSeasonPackUpgradeThreshold(75)
+	in.SetSkipFreeSpaceCheckWhenGrabbing(true)
+
+	var back MediaManagementConfigResource
+	roundTrip(t, in, &back, `"seasonPackUpgrade":"threshold"`, `"seasonPackUpgradeThreshold":75`, `"skipFreeSpaceCheckWhenGrabbing":true`)
+	if back.GetSeasonPackUpgrade() != SEASONPACKUPGRADETYPE_THRESHOLD || back.GetSeasonPackUpgradeThreshold() != 75 || !back.GetSkipFreeSpaceCheckWhenGrabbing() {
+		t.Fatalf("not read back: %+v", back)
+	}
+
+	var bad MediaManagementConfigResource
+	if err := json.Unmarshal([]byte(`{"seasonPackUpgrade":"sometimes"}`), &bad); err == nil {
+		t.Fatal("an unknown seasonPackUpgrade must be rejected")
+	}
+}
+
+func TestReleaseProfileAirDateFieldsRoundTrip(t *testing.T) {
+	in := NewReleaseProfileResource()
+	in.SetAirDateRestriction(true)
+	in.SetAirDateGracePeriod(3)
+	in.SetAllowSeasonPackWithoutAllEpisodesAired(true)
+	in.SetExcludedTags([]int32{4, 7})
+
+	var back ReleaseProfileResource
+	roundTrip(t, in, &back, `"airDateRestriction":true`, `"airDateGracePeriod":3`, `"allowSeasonPackWithoutAllEpisodesAired":true`, `"excludedTags":[4,7]`)
+	if !back.GetAirDateRestriction() || back.GetAirDateGracePeriod() != 3 || len(back.GetExcludedTags()) != 2 {
+		t.Fatalf("not read back: %+v", back)
+	}
+}
+
+func TestImportListAndSeriesLanguageRoundTrip(t *testing.T) {
+	lang := NewLanguage()
+	lang.SetId(1)
+	lang.SetName("English")
+
+	list := NewImportListResource()
+	list.SetLanguage(*lang)
+	list.SetTagExisting(TAGEXISTINGTYPE_SYNC)
+
+	var backList ImportListResource
+	roundTrip(t, list, &backList, `"language":{"id":1,"name":"English"}`, `"tagExisting":"sync"`)
+	listLang := backList.GetLanguage()
+	if listLang.GetName() != "English" || backList.GetTagExisting() != TAGEXISTINGTYPE_SYNC {
+		t.Fatalf("not read back: %+v", backList)
+	}
+
+	series := NewSeriesResource()
+	series.SetLanguage(*lang)
+
+	var backSeries SeriesResource
+	roundTrip(t, series, &backSeries, `"language":{"id":1,"name":"English"}`)
+	seriesLang := backSeries.GetLanguage()
+	if seriesLang.GetId() != 1 {
+		t.Fatalf("not read back: %+v", backSeries)
+	}
+}
+
+func TestV4AnswersLeaveNewFieldsUnset(t *testing.T) {
+	var mm MediaManagementConfigResource
+	var rp ReleaseProfileResource
+	var host HostConfigResource
+	_ = json.Unmarshal([]byte(`{"id":1}`), &mm)
+	_ = json.Unmarshal([]byte(`{"id":1,"name":"x"}`), &rp)
+	_ = json.Unmarshal([]byte(`{"id":1}`), &host)
+
+	if mm.HasSeasonPackUpgrade() || mm.HasSeasonPackUpgradeThreshold() || rp.HasAirDateRestriction() || rp.HasExcludedTags() || host.HasOidcScopes() {
+		t.Fatal("fields Sonarr 4 doesn't send must stay unset")
+	}
+	for _, v := range []interface{}{mm, rp, host} {
+		out, _ := json.Marshal(v)
+		for _, f := range []string{"seasonPack", "airDate", "excludedTags", "oidc", "sslKeyPath"} {
+			if strings.Contains(string(out), f) {
+				t.Fatalf("unset %s must not be sent: %s", f, out)
+			}
+		}
+	}
+}
+
+func TestNewEnumValues(t *testing.T) {
+	for _, c := range []struct {
+		v  string
+		ok bool
+	}{
+		{string(RELEASETYPE_MULTI_SEASON_PACK), RELEASETYPE_MULTI_SEASON_PACK.IsValid()},
+		{string(COMMANDRESULT_INDETERMINATE), COMMANDRESULT_INDETERMINATE.IsValid()},
+		{string(IMPORTLISTTYPE_TMDB), IMPORTLISTTYPE_TMDB.IsValid()},
+		{string(TAGEXISTINGTYPE_ADD), TAGEXISTINGTYPE_ADD.IsValid()},
+	} {
+		if !c.ok {
+			t.Fatalf("%s not valid", c.v)
+		}
+	}
+}

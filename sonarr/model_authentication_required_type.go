@@ -22,12 +22,14 @@ type AuthenticationRequiredType string
 const (
 	AUTHENTICATIONREQUIREDTYPE_ENABLED AuthenticationRequiredType = "enabled"
 	AUTHENTICATIONREQUIREDTYPE_DISABLED_FOR_LOCAL_ADDRESSES AuthenticationRequiredType = "disabledForLocalAddresses"
+	AUTHENTICATIONREQUIREDTYPE_DISABLED_FOR_LOCALHOST AuthenticationRequiredType = "disabledForLocalhost"
 )
 
 // All allowed values of AuthenticationRequiredType enum
 var AllowedAuthenticationRequiredTypeEnumValues = []AuthenticationRequiredType{
 	"enabled",
 	"disabledForLocalAddresses",
+	"disabledForLocalhost",
 }
 
 func (v *AuthenticationRequiredType) UnmarshalJSON(src []byte) error {

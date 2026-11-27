@@ -26,6 +26,10 @@ type ReleaseProfileResource struct {
 	Ignored []string `json:"ignored,omitempty"`
 	IndexerId *int32 `json:"indexerId,omitempty"`
 	Tags []int32 `json:"tags,omitempty"`
+	AirDateRestriction *bool `json:"airDateRestriction,omitempty"`
+	AirDateGracePeriod *int32 `json:"airDateGracePeriod,omitempty"`
+	AllowSeasonPackWithoutAllEpisodesAired *bool `json:"allowSeasonPackWithoutAllEpisodesAired,omitempty"`
+	ExcludedTags []int32 `json:"excludedTags,omitempty"`
 }
 
 // NewReleaseProfileResource instantiates a new ReleaseProfileResource object
@@ -282,6 +286,135 @@ func (o *ReleaseProfileResource) SetTags(v []int32) {
 	o.Tags = v
 }
 
+// GetAirDateRestriction returns the AirDateRestriction field value if set, zero value otherwise.
+func (o *ReleaseProfileResource) GetAirDateRestriction() bool {
+	if o == nil || IsNil(o.AirDateRestriction) {
+		var ret bool
+		return ret
+	}
+	return *o.AirDateRestriction
+}
+
+// GetAirDateRestrictionOk returns a tuple with the AirDateRestriction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReleaseProfileResource) GetAirDateRestrictionOk() (*bool, bool) {
+	if o == nil || IsNil(o.AirDateRestriction) {
+		return nil, false
+	}
+	return o.AirDateRestriction, true
+}
+
+// HasAirDateRestriction returns a boolean if a field has been set.
+func (o *ReleaseProfileResource) HasAirDateRestriction() bool {
+	if o != nil && !IsNil(o.AirDateRestriction) {
+		return true
+	}
+
+	return false
+}
+
+// SetAirDateRestriction gets a reference to the given bool and assigns it to the AirDateRestriction field.
+func (o *ReleaseProfileResource) SetAirDateRestriction(v bool) {
+	o.AirDateRestriction = &v
+}
+
+// GetAirDateGracePeriod returns the AirDateGracePeriod field value if set, zero value otherwise.
+func (o *ReleaseProfileResource) GetAirDateGracePeriod() int32 {
+	if o == nil || IsNil(o.AirDateGracePeriod) {
+		var ret int32
+		return ret
+	}
+	return *o.AirDateGracePeriod
+}
+
+// GetAirDateGracePeriodOk returns a tuple with the AirDateGracePeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReleaseProfileResource) GetAirDateGracePeriodOk() (*int32, bool) {
+	if o == nil || IsNil(o.AirDateGracePeriod) {
+		return nil, false
+	}
+	return o.AirDateGracePeriod, true
+}
+
+// HasAirDateGracePeriod returns a boolean if a field has been set.
+func (o *ReleaseProfileResource) HasAirDateGracePeriod() bool {
+	if o != nil && !IsNil(o.AirDateGracePeriod) {
+		return true
+	}
+
+	return false
+}
+
+// SetAirDateGracePeriod gets a reference to the given int32 and assigns it to the AirDateGracePeriod field.
+func (o *ReleaseProfileResource) SetAirDateGracePeriod(v int32) {
+	o.AirDateGracePeriod = &v
+}
+
+// GetAllowSeasonPackWithoutAllEpisodesAired returns the AllowSeasonPackWithoutAllEpisodesAired field value if set, zero value otherwise.
+func (o *ReleaseProfileResource) GetAllowSeasonPackWithoutAllEpisodesAired() bool {
+	if o == nil || IsNil(o.AllowSeasonPackWithoutAllEpisodesAired) {
+		var ret bool
+		return ret
+	}
+	return *o.AllowSeasonPackWithoutAllEpisodesAired
+}
+
+// GetAllowSeasonPackWithoutAllEpisodesAiredOk returns a tuple with the AllowSeasonPackWithoutAllEpisodesAired field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReleaseProfileResource) GetAllowSeasonPackWithoutAllEpisodesAiredOk() (*bool, bool) {
+	if o == nil || IsNil(o.AllowSeasonPackWithoutAllEpisodesAired) {
+		return nil, false
+	}
+	return o.AllowSeasonPackWithoutAllEpisodesAired, true
+}
+
+// HasAllowSeasonPackWithoutAllEpisodesAired returns a boolean if a field has been set.
+func (o *ReleaseProfileResource) HasAllowSeasonPackWithoutAllEpisodesAired() bool {
+	if o != nil && !IsNil(o.AllowSeasonPackWithoutAllEpisodesAired) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowSeasonPackWithoutAllEpisodesAired gets a reference to the given bool and assigns it to the AllowSeasonPackWithoutAllEpisodesAired field.
+func (o *ReleaseProfileResource) SetAllowSeasonPackWithoutAllEpisodesAired(v bool) {
+	o.AllowSeasonPackWithoutAllEpisodesAired = &v
+}
+
+// GetExcludedTags returns the ExcludedTags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ReleaseProfileResource) GetExcludedTags() []int32 {
+	if o == nil {
+		var ret []int32
+		return ret
+	}
+	return o.ExcludedTags
+}
+
+// GetExcludedTagsOk returns a tuple with the ExcludedTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ReleaseProfileResource) GetExcludedTagsOk() ([]int32, bool) {
+	if o == nil || IsNil(o.ExcludedTags) {
+		return nil, false
+	}
+	return o.ExcludedTags, true
+}
+
+// HasExcludedTags returns a boolean if a field has been set.
+func (o *ReleaseProfileResource) HasExcludedTags() bool {
+	if o != nil && !IsNil(o.ExcludedTags) {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedTags gets a reference to the given []int32 and assigns it to the ExcludedTags field.
+func (o *ReleaseProfileResource) SetExcludedTags(v []int32) {
+	o.ExcludedTags = v
+}
+
 func (o ReleaseProfileResource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -312,6 +445,18 @@ func (o ReleaseProfileResource) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.AirDateRestriction) {
+		toSerialize["airDateRestriction"] = o.AirDateRestriction
+	}
+	if !IsNil(o.AirDateGracePeriod) {
+		toSerialize["airDateGracePeriod"] = o.AirDateGracePeriod
+	}
+	if !IsNil(o.AllowSeasonPackWithoutAllEpisodesAired) {
+		toSerialize["allowSeasonPackWithoutAllEpisodesAired"] = o.AllowSeasonPackWithoutAllEpisodesAired
+	}
+	if o.ExcludedTags != nil {
+		toSerialize["excludedTags"] = o.ExcludedTags
 	}
 	return toSerialize, nil
 }

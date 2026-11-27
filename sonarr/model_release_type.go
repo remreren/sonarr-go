@@ -24,6 +24,7 @@ const (
 	RELEASETYPE_SINGLE_EPISODE ReleaseType = "singleEpisode"
 	RELEASETYPE_MULTI_EPISODE ReleaseType = "multiEpisode"
 	RELEASETYPE_SEASON_PACK ReleaseType = "seasonPack"
+	RELEASETYPE_MULTI_SEASON_PACK ReleaseType = "multiSeasonPack"
 )
 
 // All allowed values of ReleaseType enum
@@ -32,6 +33,7 @@ var AllowedReleaseTypeEnumValues = []ReleaseType{
 	"singleEpisode",
 	"multiEpisode",
 	"seasonPack",
+	"multiSeasonPack",
 }
 
 func (v *ReleaseType) UnmarshalJSON(src []byte) error {
