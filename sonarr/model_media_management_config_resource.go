@@ -39,7 +39,11 @@ type MediaManagementConfigResource struct {
 	ScriptImportPath NullableString `json:"scriptImportPath,omitempty"`
 	ImportExtraFiles *bool `json:"importExtraFiles,omitempty"`
 	ExtraFileExtensions NullableString `json:"extraFileExtensions,omitempty"`
+	UserRejectedExtensions NullableString `json:"userRejectedExtensions,omitempty"`
 	EnableMediaInfo *bool `json:"enableMediaInfo,omitempty"`
+	SeasonPackUpgrade *SeasonPackUpgradeType `json:"seasonPackUpgrade,omitempty"`
+	SeasonPackUpgradeThreshold *float64 `json:"seasonPackUpgradeThreshold,omitempty"`
+	SkipFreeSpaceCheckWhenGrabbing *bool `json:"skipFreeSpaceCheckWhenGrabbing,omitempty"`
 }
 
 // NewMediaManagementConfigResource instantiates a new MediaManagementConfigResource object
@@ -781,6 +785,144 @@ func (o *MediaManagementConfigResource) SetEnableMediaInfo(v bool) {
 	o.EnableMediaInfo = &v
 }
 
+// GetUserRejectedExtensions returns the UserRejectedExtensions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MediaManagementConfigResource) GetUserRejectedExtensions() string {
+	if o == nil || IsNil(o.UserRejectedExtensions.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.UserRejectedExtensions.Get()
+}
+
+// GetUserRejectedExtensionsOk returns a tuple with the UserRejectedExtensions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MediaManagementConfigResource) GetUserRejectedExtensionsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UserRejectedExtensions.Get(), o.UserRejectedExtensions.IsSet()
+}
+
+// HasUserRejectedExtensions returns a boolean if a field has been set.
+func (o *MediaManagementConfigResource) HasUserRejectedExtensions() bool {
+	if o != nil && o.UserRejectedExtensions.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUserRejectedExtensions gets a reference to the given NullableString and assigns it to the UserRejectedExtensions field.
+func (o *MediaManagementConfigResource) SetUserRejectedExtensions(v string) {
+	o.UserRejectedExtensions.Set(&v)
+}
+// SetUserRejectedExtensionsNil sets the value for UserRejectedExtensions to be an explicit nil
+func (o *MediaManagementConfigResource) SetUserRejectedExtensionsNil() {
+	o.UserRejectedExtensions.Set(nil)
+}
+
+// UnsetUserRejectedExtensions ensures that no value is present for UserRejectedExtensions, not even an explicit nil
+func (o *MediaManagementConfigResource) UnsetUserRejectedExtensions() {
+	o.UserRejectedExtensions.Unset()
+}
+
+// GetSeasonPackUpgrade returns the SeasonPackUpgrade field value if set, zero value otherwise.
+func (o *MediaManagementConfigResource) GetSeasonPackUpgrade() SeasonPackUpgradeType {
+	if o == nil || IsNil(o.SeasonPackUpgrade) {
+		var ret SeasonPackUpgradeType
+		return ret
+	}
+	return *o.SeasonPackUpgrade
+}
+
+// GetSeasonPackUpgradeOk returns a tuple with the SeasonPackUpgrade field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MediaManagementConfigResource) GetSeasonPackUpgradeOk() (*SeasonPackUpgradeType, bool) {
+	if o == nil || IsNil(o.SeasonPackUpgrade) {
+		return nil, false
+	}
+	return o.SeasonPackUpgrade, true
+}
+
+// HasSeasonPackUpgrade returns a boolean if a field has been set.
+func (o *MediaManagementConfigResource) HasSeasonPackUpgrade() bool {
+	if o != nil && !IsNil(o.SeasonPackUpgrade) {
+		return true
+	}
+
+	return false
+}
+
+// SetSeasonPackUpgrade gets a reference to the given SeasonPackUpgradeType and assigns it to the SeasonPackUpgrade field.
+func (o *MediaManagementConfigResource) SetSeasonPackUpgrade(v SeasonPackUpgradeType) {
+	o.SeasonPackUpgrade = &v
+}
+
+// GetSeasonPackUpgradeThreshold returns the SeasonPackUpgradeThreshold field value if set, zero value otherwise.
+func (o *MediaManagementConfigResource) GetSeasonPackUpgradeThreshold() float64 {
+	if o == nil || IsNil(o.SeasonPackUpgradeThreshold) {
+		var ret float64
+		return ret
+	}
+	return *o.SeasonPackUpgradeThreshold
+}
+
+// GetSeasonPackUpgradeThresholdOk returns a tuple with the SeasonPackUpgradeThreshold field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MediaManagementConfigResource) GetSeasonPackUpgradeThresholdOk() (*float64, bool) {
+	if o == nil || IsNil(o.SeasonPackUpgradeThreshold) {
+		return nil, false
+	}
+	return o.SeasonPackUpgradeThreshold, true
+}
+
+// HasSeasonPackUpgradeThreshold returns a boolean if a field has been set.
+func (o *MediaManagementConfigResource) HasSeasonPackUpgradeThreshold() bool {
+	if o != nil && !IsNil(o.SeasonPackUpgradeThreshold) {
+		return true
+	}
+
+	return false
+}
+
+// SetSeasonPackUpgradeThreshold gets a reference to the given float64 and assigns it to the SeasonPackUpgradeThreshold field.
+func (o *MediaManagementConfigResource) SetSeasonPackUpgradeThreshold(v float64) {
+	o.SeasonPackUpgradeThreshold = &v
+}
+
+// GetSkipFreeSpaceCheckWhenGrabbing returns the SkipFreeSpaceCheckWhenGrabbing field value if set, zero value otherwise.
+func (o *MediaManagementConfigResource) GetSkipFreeSpaceCheckWhenGrabbing() bool {
+	if o == nil || IsNil(o.SkipFreeSpaceCheckWhenGrabbing) {
+		var ret bool
+		return ret
+	}
+	return *o.SkipFreeSpaceCheckWhenGrabbing
+}
+
+// GetSkipFreeSpaceCheckWhenGrabbingOk returns a tuple with the SkipFreeSpaceCheckWhenGrabbing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MediaManagementConfigResource) GetSkipFreeSpaceCheckWhenGrabbingOk() (*bool, bool) {
+	if o == nil || IsNil(o.SkipFreeSpaceCheckWhenGrabbing) {
+		return nil, false
+	}
+	return o.SkipFreeSpaceCheckWhenGrabbing, true
+}
+
+// HasSkipFreeSpaceCheckWhenGrabbing returns a boolean if a field has been set.
+func (o *MediaManagementConfigResource) HasSkipFreeSpaceCheckWhenGrabbing() bool {
+	if o != nil && !IsNil(o.SkipFreeSpaceCheckWhenGrabbing) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkipFreeSpaceCheckWhenGrabbing gets a reference to the given bool and assigns it to the SkipFreeSpaceCheckWhenGrabbing field.
+func (o *MediaManagementConfigResource) SetSkipFreeSpaceCheckWhenGrabbing(v bool) {
+	o.SkipFreeSpaceCheckWhenGrabbing = &v
+}
+
 func (o MediaManagementConfigResource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -851,8 +993,20 @@ func (o MediaManagementConfigResource) ToMap() (map[string]interface{}, error) {
 	if o.ExtraFileExtensions.IsSet() {
 		toSerialize["extraFileExtensions"] = o.ExtraFileExtensions.Get()
 	}
+	if o.UserRejectedExtensions.IsSet() {
+		toSerialize["userRejectedExtensions"] = o.UserRejectedExtensions.Get()
+	}
 	if !IsNil(o.EnableMediaInfo) {
 		toSerialize["enableMediaInfo"] = o.EnableMediaInfo
+	}
+	if !IsNil(o.SeasonPackUpgrade) {
+		toSerialize["seasonPackUpgrade"] = o.SeasonPackUpgrade
+	}
+	if !IsNil(o.SeasonPackUpgradeThreshold) {
+		toSerialize["seasonPackUpgradeThreshold"] = o.SeasonPackUpgradeThreshold
+	}
+	if !IsNil(o.SkipFreeSpaceCheckWhenGrabbing) {
+		toSerialize["skipFreeSpaceCheckWhenGrabbing"] = o.SkipFreeSpaceCheckWhenGrabbing
 	}
 	return toSerialize, nil
 }

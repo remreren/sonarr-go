@@ -59,6 +59,12 @@ type HostConfigResource struct {
 	BackupInterval *int32 `json:"backupInterval,omitempty"`
 	BackupRetention *int32 `json:"backupRetention,omitempty"`
 	TrustCgnatIpAddresses *bool `json:"trustCgnatIpAddresses,omitempty"`
+	OidcAuthority NullableString `json:"oidcAuthority,omitempty"`
+	OidcClientId NullableString `json:"oidcClientId,omitempty"`
+	OidcClientSecret NullableString `json:"oidcClientSecret,omitempty"`
+	OidcScopes NullableString `json:"oidcScopes,omitempty"`
+	OidcUserIdentifier NullableString `json:"oidcUserIdentifier,omitempty"`
+	SslKeyPath NullableString `json:"sslKeyPath,omitempty"`
 }
 
 // NewHostConfigResource instantiates a new HostConfigResource object
@@ -1568,6 +1574,258 @@ func (o *HostConfigResource) SetTrustCgnatIpAddresses(v bool) {
 	o.TrustCgnatIpAddresses = &v
 }
 
+// GetOidcAuthority returns the OidcAuthority field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostConfigResource) GetOidcAuthority() string {
+	if o == nil || IsNil(o.OidcAuthority.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OidcAuthority.Get()
+}
+
+// GetOidcAuthorityOk returns a tuple with the OidcAuthority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HostConfigResource) GetOidcAuthorityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OidcAuthority.Get(), o.OidcAuthority.IsSet()
+}
+
+// HasOidcAuthority returns a boolean if a field has been set.
+func (o *HostConfigResource) HasOidcAuthority() bool {
+	if o != nil && o.OidcAuthority.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOidcAuthority gets a reference to the given NullableString and assigns it to the OidcAuthority field.
+func (o *HostConfigResource) SetOidcAuthority(v string) {
+	o.OidcAuthority.Set(&v)
+}
+// SetOidcAuthorityNil sets the value for OidcAuthority to be an explicit nil
+func (o *HostConfigResource) SetOidcAuthorityNil() {
+	o.OidcAuthority.Set(nil)
+}
+
+// UnsetOidcAuthority ensures that no value is present for OidcAuthority, not even an explicit nil
+func (o *HostConfigResource) UnsetOidcAuthority() {
+	o.OidcAuthority.Unset()
+}
+
+// GetOidcClientId returns the OidcClientId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostConfigResource) GetOidcClientId() string {
+	if o == nil || IsNil(o.OidcClientId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OidcClientId.Get()
+}
+
+// GetOidcClientIdOk returns a tuple with the OidcClientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HostConfigResource) GetOidcClientIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OidcClientId.Get(), o.OidcClientId.IsSet()
+}
+
+// HasOidcClientId returns a boolean if a field has been set.
+func (o *HostConfigResource) HasOidcClientId() bool {
+	if o != nil && o.OidcClientId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOidcClientId gets a reference to the given NullableString and assigns it to the OidcClientId field.
+func (o *HostConfigResource) SetOidcClientId(v string) {
+	o.OidcClientId.Set(&v)
+}
+// SetOidcClientIdNil sets the value for OidcClientId to be an explicit nil
+func (o *HostConfigResource) SetOidcClientIdNil() {
+	o.OidcClientId.Set(nil)
+}
+
+// UnsetOidcClientId ensures that no value is present for OidcClientId, not even an explicit nil
+func (o *HostConfigResource) UnsetOidcClientId() {
+	o.OidcClientId.Unset()
+}
+
+// GetOidcClientSecret returns the OidcClientSecret field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostConfigResource) GetOidcClientSecret() string {
+	if o == nil || IsNil(o.OidcClientSecret.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OidcClientSecret.Get()
+}
+
+// GetOidcClientSecretOk returns a tuple with the OidcClientSecret field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HostConfigResource) GetOidcClientSecretOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OidcClientSecret.Get(), o.OidcClientSecret.IsSet()
+}
+
+// HasOidcClientSecret returns a boolean if a field has been set.
+func (o *HostConfigResource) HasOidcClientSecret() bool {
+	if o != nil && o.OidcClientSecret.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOidcClientSecret gets a reference to the given NullableString and assigns it to the OidcClientSecret field.
+func (o *HostConfigResource) SetOidcClientSecret(v string) {
+	o.OidcClientSecret.Set(&v)
+}
+// SetOidcClientSecretNil sets the value for OidcClientSecret to be an explicit nil
+func (o *HostConfigResource) SetOidcClientSecretNil() {
+	o.OidcClientSecret.Set(nil)
+}
+
+// UnsetOidcClientSecret ensures that no value is present for OidcClientSecret, not even an explicit nil
+func (o *HostConfigResource) UnsetOidcClientSecret() {
+	o.OidcClientSecret.Unset()
+}
+
+// GetOidcScopes returns the OidcScopes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostConfigResource) GetOidcScopes() string {
+	if o == nil || IsNil(o.OidcScopes.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OidcScopes.Get()
+}
+
+// GetOidcScopesOk returns a tuple with the OidcScopes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HostConfigResource) GetOidcScopesOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OidcScopes.Get(), o.OidcScopes.IsSet()
+}
+
+// HasOidcScopes returns a boolean if a field has been set.
+func (o *HostConfigResource) HasOidcScopes() bool {
+	if o != nil && o.OidcScopes.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOidcScopes gets a reference to the given NullableString and assigns it to the OidcScopes field.
+func (o *HostConfigResource) SetOidcScopes(v string) {
+	o.OidcScopes.Set(&v)
+}
+// SetOidcScopesNil sets the value for OidcScopes to be an explicit nil
+func (o *HostConfigResource) SetOidcScopesNil() {
+	o.OidcScopes.Set(nil)
+}
+
+// UnsetOidcScopes ensures that no value is present for OidcScopes, not even an explicit nil
+func (o *HostConfigResource) UnsetOidcScopes() {
+	o.OidcScopes.Unset()
+}
+
+// GetOidcUserIdentifier returns the OidcUserIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostConfigResource) GetOidcUserIdentifier() string {
+	if o == nil || IsNil(o.OidcUserIdentifier.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OidcUserIdentifier.Get()
+}
+
+// GetOidcUserIdentifierOk returns a tuple with the OidcUserIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HostConfigResource) GetOidcUserIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OidcUserIdentifier.Get(), o.OidcUserIdentifier.IsSet()
+}
+
+// HasOidcUserIdentifier returns a boolean if a field has been set.
+func (o *HostConfigResource) HasOidcUserIdentifier() bool {
+	if o != nil && o.OidcUserIdentifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOidcUserIdentifier gets a reference to the given NullableString and assigns it to the OidcUserIdentifier field.
+func (o *HostConfigResource) SetOidcUserIdentifier(v string) {
+	o.OidcUserIdentifier.Set(&v)
+}
+// SetOidcUserIdentifierNil sets the value for OidcUserIdentifier to be an explicit nil
+func (o *HostConfigResource) SetOidcUserIdentifierNil() {
+	o.OidcUserIdentifier.Set(nil)
+}
+
+// UnsetOidcUserIdentifier ensures that no value is present for OidcUserIdentifier, not even an explicit nil
+func (o *HostConfigResource) UnsetOidcUserIdentifier() {
+	o.OidcUserIdentifier.Unset()
+}
+
+// GetSslKeyPath returns the SslKeyPath field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostConfigResource) GetSslKeyPath() string {
+	if o == nil || IsNil(o.SslKeyPath.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SslKeyPath.Get()
+}
+
+// GetSslKeyPathOk returns a tuple with the SslKeyPath field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HostConfigResource) GetSslKeyPathOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SslKeyPath.Get(), o.SslKeyPath.IsSet()
+}
+
+// HasSslKeyPath returns a boolean if a field has been set.
+func (o *HostConfigResource) HasSslKeyPath() bool {
+	if o != nil && o.SslKeyPath.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSslKeyPath gets a reference to the given NullableString and assigns it to the SslKeyPath field.
+func (o *HostConfigResource) SetSslKeyPath(v string) {
+	o.SslKeyPath.Set(&v)
+}
+// SetSslKeyPathNil sets the value for SslKeyPath to be an explicit nil
+func (o *HostConfigResource) SetSslKeyPathNil() {
+	o.SslKeyPath.Set(nil)
+}
+
+// UnsetSslKeyPath ensures that no value is present for SslKeyPath, not even an explicit nil
+func (o *HostConfigResource) UnsetSslKeyPath() {
+	o.SslKeyPath.Unset()
+}
+
 func (o HostConfigResource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1697,6 +1955,24 @@ func (o HostConfigResource) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TrustCgnatIpAddresses) {
 		toSerialize["trustCgnatIpAddresses"] = o.TrustCgnatIpAddresses
+	}
+	if o.OidcAuthority.IsSet() {
+		toSerialize["oidcAuthority"] = o.OidcAuthority.Get()
+	}
+	if o.OidcClientId.IsSet() {
+		toSerialize["oidcClientId"] = o.OidcClientId.Get()
+	}
+	if o.OidcClientSecret.IsSet() {
+		toSerialize["oidcClientSecret"] = o.OidcClientSecret.Get()
+	}
+	if o.OidcScopes.IsSet() {
+		toSerialize["oidcScopes"] = o.OidcScopes.Get()
+	}
+	if o.OidcUserIdentifier.IsSet() {
+		toSerialize["oidcUserIdentifier"] = o.OidcUserIdentifier.Get()
+	}
+	if o.SslKeyPath.IsSet() {
+		toSerialize["sslKeyPath"] = o.SslKeyPath.Get()
 	}
 	return toSerialize, nil
 }

@@ -23,6 +23,7 @@ const (
 	COMMANDRESULT_UNKNOWN CommandResult = "unknown"
 	COMMANDRESULT_SUCCESSFUL CommandResult = "successful"
 	COMMANDRESULT_UNSUCCESSFUL CommandResult = "unsuccessful"
+	COMMANDRESULT_INDETERMINATE CommandResult = "indeterminate"
 )
 
 // All allowed values of CommandResult enum
@@ -30,6 +31,7 @@ var AllowedCommandResultEnumValues = []CommandResult{
 	"unknown",
 	"successful",
 	"unsuccessful",
+	"indeterminate",
 }
 
 func (v *CommandResult) UnmarshalJSON(src []byte) error {

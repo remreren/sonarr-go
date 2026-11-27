@@ -66,6 +66,7 @@ type SeriesResource struct {
 	EpisodesChanged NullableBool `json:"episodesChanged,omitempty"`
 	// Deprecated
 	LanguageProfileId *int32 `json:"languageProfileId,omitempty"`
+	Language *Language `json:"language,omitempty"`
 }
 
 // NewSeriesResource instantiates a new SeriesResource object
@@ -1723,6 +1724,38 @@ func (o *SeriesResource) SetLanguageProfileId(v int32) {
 	o.LanguageProfileId = &v
 }
 
+// GetLanguage returns the Language field value if set, zero value otherwise.
+func (o *SeriesResource) GetLanguage() Language {
+	if o == nil || IsNil(o.Language) {
+		var ret Language
+		return ret
+	}
+	return *o.Language
+}
+
+// GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SeriesResource) GetLanguageOk() (*Language, bool) {
+	if o == nil || IsNil(o.Language) {
+		return nil, false
+	}
+	return o.Language, true
+}
+
+// HasLanguage returns a boolean if a field has been set.
+func (o *SeriesResource) HasLanguage() bool {
+	if o != nil && !IsNil(o.Language) {
+		return true
+	}
+
+	return false
+}
+
+// SetLanguage gets a reference to the given Language and assigns it to the Language field.
+func (o *SeriesResource) SetLanguage(v Language) {
+	o.Language = &v
+}
+
 func (o SeriesResource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1867,6 +1900,9 @@ func (o SeriesResource) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LanguageProfileId) {
 		toSerialize["languageProfileId"] = o.LanguageProfileId
+	}
+	if !IsNil(o.Language) {
+		toSerialize["language"] = o.Language
 	}
 	return toSerialize, nil
 }
